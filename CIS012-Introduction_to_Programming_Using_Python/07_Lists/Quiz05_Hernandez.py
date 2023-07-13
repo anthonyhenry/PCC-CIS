@@ -39,4 +39,3 @@ def concatInts(int1, int2, int3, int4, int5,):
     return returnString
 
 numString = concatInts(1, 8, 5, 6, 3)
-print(h)
