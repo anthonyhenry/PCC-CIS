@@ -37,4 +37,26 @@ def validateUserInputTime(startHour, startMinute):
     except:
         return False
 
-print(validateUserInputTime(startHour, startMinute))
+print("validateUserInputTime:", validateUserInputTime(startHour, startMinute))
+
+def collectUserInputDay():
+    userInputDay = input("Enter the first two letters of the day of the week:\n")
+    userInputDay = list(userInputDay)
+    
+    firstDayCharacter = userInputDay[0]
+    secondDayCharacter = userInputDay[1]
+
+    return firstDayCharacter, secondDayCharacter
+
+firstDayCharacter, secondDayCharacter = collectUserInputDay()
+
+def validateUserInputDay(firstDayCharacter, secondDayCharacter):
+    userInputDay = firstDayCharacter + secondDayCharacter
+    userInputDay = userInputDay.lower()
+
+    if userInputDay in daysList:
+        return True
+    else:
+        return False
+
+print("validateUserInputDay:", validateUserInputDay(firstDayCharacter, secondDayCharacter))
