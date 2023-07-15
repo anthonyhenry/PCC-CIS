@@ -36,7 +36,7 @@ def validateUserInputTime(startHour, startMinute):
 daysList = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
 
 def collectUserInputDay():
-    userInputDay = input("Enter the first two letters of the day of the week:\n")
+    userInputDay = input("\nEnter the first two letters of the day of the week:\n")
     userInputDay = list(userInputDay)
     
     firstDayCharacter = userInputDay[0]
@@ -54,7 +54,7 @@ def validateUserInputDay(firstDayCharacter, secondDayCharacter):
         return False
 
 def collectUserInputCallLength():
-    callLength = input("Enter the length of the call in (hours:minutes):\n")
+    callLength = input("\nEnter the length of the call in (hours:minutes):\n")
     callLength = callLength.split(":")
     callLengthHour = callLength[0]
     callLengthMinute = callLength[1]
@@ -95,7 +95,7 @@ def calculateTotalCost(startHour, startMinute, firstDayCharacter, secondDayChara
 responseList = ['y', 'n']
 
 def collectUserInputYesNo():
-    YesOrNo = input("Do you want to repeat the program (y/n)?\n>>")
+    YesOrNo = input("\nDo you want to repeat the program (y/n)?\n>>")
     return YesOrNo
 
 def validateUserInputYesNo(YesOrNo):
@@ -113,8 +113,9 @@ while(runProgram == True):
     while(validTime == False):
         startHour, startMinute = collectUserInputTime()
         validTime = validateUserInputTime(startHour, startMinute)
+
         if(validTime == False):
-            print("Invlid time input.\nPlease try again.\n")
+            print("\nInvlid time input.\nPlease try again.\n")
     
     # Prompt the user for a valid day
     validDay = False
@@ -123,7 +124,7 @@ while(runProgram == True):
         validDay = validateUserInputDay(firstDayCharacter, secondDayCharacter)
 
         if(validDay == False):
-            print("Invalid day input.\nPlease try again.\n")
+            print("\nInvalid day input.\nPlease try again.")
 
     # Prompt the user for a valid call length
     validCallLength = False
@@ -132,18 +133,18 @@ while(runProgram == True):
         validCallLength = validateUserInputCallLength(callLengthHour, callLengthMinute)
 
         if(validCallLength == False):
-            print("Invalid call length input.\nPlease try again.\n")
+            print("\nInvalid call length input.\nPlease try again.")
 
+    # Format cost as 00.00
     totalCostOutput = str(calculateTotalCost(startHour, startMinute, firstDayCharacter, secondDayCharacter, callLengthHour, callLengthMinute))
     totalCostOutput = totalCostOutput.split(".")
     if(len(totalCostOutput[1]) == 1):
         totalCostOutput = totalCostOutput[0] + "." + totalCostOutput[1] + "0"
     else:
         totalCostOutput = totalCostOutput[0] + "." + totalCostOutput[1]
-    # totalCostOutput = totalCostOutput[0] + totalCostOutput[1]
-    totalCostOutput = "Cost of the call: $" + totalCostOutput
-
-    # totalCostOutput = "Cost of the call: $" + str(calculateTotalCost(startHour, startMinute, firstDayCharacter, secondDayCharacter, callLengthHour, callLengthMinute))
+    
+    # Output total cost
+    totalCostOutput = "\nCost of the call: $" + totalCostOutput
     print(totalCostOutput)
     
     # Prompt the user for a valid yes or no response
@@ -154,7 +155,7 @@ while(runProgram == True):
         validResponse = validateUserInputYesNo(yesOrNo)
 
         if(validResponse == False):
-            print("Invalid response.\nPlease try again.\n")
+            print("\nInvalid response.\nPlease try again.")
     
     if(yesOrNo == "y"):
         runProgram = True
