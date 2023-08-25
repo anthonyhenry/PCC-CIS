@@ -1,0 +1,12 @@
+Go to python.org and download the latest version
+
+In the python installer make sure to check the "Add python.exe to PATH" option
+
+Open the python shell to confirm that python installed correctly
+
+Setup VS Code for Python
+-From the extensions page install the Python extension by Microsoft
+-Next setup the python interpreter for VS Code
+    -Hit Ctrl+Shift+P to open the command palette
+    -Search for python: select interpreter and choose it from the dropdown
+    -Select the interpreter you installed earlier
