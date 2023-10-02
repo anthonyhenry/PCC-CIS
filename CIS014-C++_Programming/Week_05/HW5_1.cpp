@@ -8,12 +8,10 @@ using namespace std;
  * RETURN VALUES:
  */ 
 bool canPlantAvocados(vector<int> field, int n) { 
-    // YOUR CODE HERE
-
     // Initialize a variable to keep track of how many spaces seeds can be planted
     int availableSpaces = 0;
 
-    // Loop through the vector for spaces to plany seeds
+    // Loop through the vector for spaces to plant seeds
     for (int i = 0; i < field.size(); i++)
     {
         cout << i << ": " << field.at(i) << endl;
@@ -67,16 +65,47 @@ bool canPlantAvocados(vector<int> field, int n) {
             }
         }
 
-        // if(i == (field.size() - 1))
-        // {
-        //     for (int j = i - 1; j >= 0; j--)
-        //     {
-        //         if(field.at(j) == 1)
-        //         {
+        if(i == (field.size() - 1) && field.at(i) == 0)
+        {
+            cout << "Ends with 0" << endl;
 
-        //         }
-        //     }
-        // }
+            for (int j = i - 1; j >= 0; j--)
+            {
+                if(field.at(j) == 1)
+                {
+                    //Check how far apart the avacados are
+                    int distanceBetweenAvacados = i - j;
+                    cout << "Distance: " << distanceBetweenAvacados << endl;
+
+                    // Increase the available spaces variable if there is room for more seeds
+                    if(distanceBetweenAvacados >= 2)
+                    {
+                        availableSpaces += distanceBetweenAvacados / 2;
+                    }
+
+                    // Jump to the next avacado
+                    // i = j - 1;
+                    break;
+                }
+
+                if(j == 0 && field.at(j) == 0)
+                {
+                    //Check how far apart the avacados are
+                    int distanceBetweenAvacados = i - j;
+                    cout << "Distance: " << distanceBetweenAvacados << endl;
+
+                    // Increase the available spaces variable if there is room for more seeds
+                    if(distanceBetweenAvacados >= 1)
+                    {
+                        availableSpaces += (distanceBetweenAvacados / 2) + 1;
+                    }
+
+                    // Jump to the next avacado
+                    // i = j - 1;
+                    break;
+                }
+            }
+        }
     }
 
     cout << "Available Spaces: " << availableSpaces << endl;
@@ -95,7 +124,7 @@ bool canPlantAvocados(vector<int> field, int n) {
 int main() { 
     // your target function will be tested as such,  
     // with random input 
-    vector<int> field = {0,0,1,0,0,0,1,0,0};
+    vector<int> field = {0,1,0,0,0,0,0,0};
     cout << canPlantAvocados(field, 1); // function returns a boolean false, 
                                         // which is 0 in cout 
     return 0; 
