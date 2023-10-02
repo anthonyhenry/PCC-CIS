@@ -16,7 +16,32 @@ bool canPlantAvocados(vector<int> field, int n) {
     // Loop through the vector for spaces to plany seeds
     for (int i = 0; i < field.size(); i++)
     {
-        // cout << i << ": " << field.at(i) << endl;
+        cout << i << ": " << field.at(i) << endl;
+
+        // Check if the first entry is a 0
+        if(i == 0 && field.at(i) == 0)
+        {
+            cout << "Starts with 0" << endl;
+
+            for(int j = i; j < field.size(); j++)
+            {
+                if(field.at(j) == 1)
+                {
+                    //Check how far apart the avacados are
+                    int distanceBetweenAvacados = j - i;
+
+                    // Increase the available spaces variable if there is room for more seeds
+                    if(distanceBetweenAvacados >= 2)
+                    {
+                        availableSpaces += distanceBetweenAvacados / 2;
+                    }
+
+                    // Jump to the next avacado
+                    // i = j - 1;
+                    break;
+                }
+            }
+        }
 
         //Check if an avacado has been found
         if(field.at(i) == 1 && i < field.size() - 1)
@@ -36,11 +61,22 @@ bool canPlantAvocados(vector<int> field, int n) {
                     }
 
                     // Jump to the next avacado
-                    i = j - 1;
+                    // i = j - 1;
                     break;
                 }
             }
         }
+
+        // if(i == (field.size() - 1))
+        // {
+        //     for (int j = i - 1; j >= 0; j--)
+        //     {
+        //         if(field.at(j) == 1)
+        //         {
+
+        //         }
+        //     }
+        // }
     }
 
     cout << "Available Spaces: " << availableSpaces << endl;
@@ -59,7 +95,7 @@ bool canPlantAvocados(vector<int> field, int n) {
 int main() { 
     // your target function will be tested as such,  
     // with random input 
-    vector<int> field = {1,0,0,0,0,0,0,0,1};
+    vector<int> field = {0,0,1,0,0,0,1,0,0};
     cout << canPlantAvocados(field, 1); // function returns a boolean false, 
                                         // which is 0 in cout 
     return 0; 
