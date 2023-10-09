@@ -55,29 +55,49 @@ int compareVersions(string ver1, string ver2) {
 
             // Integer variable Convert partition number from a string to an integer
             int ver1ComparisonNumber = stoi(ver1PartitionNumberString);
+            int ver2ComparisonNumber; // The value of this will be set later
 
+            // Get the whole number for the next ver2 partition
+            for(int k = startOfVer2Number + 1; k < longerVersionLength; k++)
+            {
+                // Check if a decimal point has been reached
+                if(ver2[k] == '.')
+                {
+                    // cout << "Found a decimal point in ver2!" << endl;
+                    // Set the end of the partition
+                    endOfVer2Number = k;
+                    // Create an empty string variable for holding the partition's number
+                    string ver2PartitionNumberString = "";
 
+                    // Get the whole number for this partition
+                    for(int l = startOfVer2Number + 1; l < endOfVer2Number; l++)
+                    {
+                        ver2PartitionNumberString += ver2[l];
+                    }
+
+                    // cout << "ver2PartitionNumberString " << ver2PartitionNumberString << endl; 
+
+                    // Integer variable that converts partition number from string to integer
+                    ver2ComparisonNumber = stoi(ver2PartitionNumberString);
+
+                    // Reset start of ver2 number variable
+                    startOfVer2Number = endOfVer2Number;
+
+                    // exit this loop
+                    break;
+                }
+            }
 
             // Reset startOfVer1Number variable
             startOfVer1Number = endOfVer1Number;
 
             // cout << ver1PartitionNumberString << endl;
 
-            cout << "Comparing " << ver1ComparisonNumber << " to " << endl;
+            cout << "Comparing " << ver1ComparisonNumber << " to " << ver2ComparisonNumber << endl;
 
 
 
         }
-
-
-
-
-
-
-        // if(ver2[i] == '.')
-        // {
-        //     endOfVer2Number = i;
-        // }
     }
 
     
@@ -89,6 +109,6 @@ int main() {
     // also test your own code this way:
     // cout << (compareVersions("0.1", "0.1") == 0); // 1, which is true
     // cout << compareVersions("0.1", "0.1"); // 0
-    cout << compareVersions("0.123.5", "0.0.1");
+    cout << compareVersions("0.123.5.5.4", "6.7.1");
     return 0;
 }
