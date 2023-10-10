@@ -18,6 +18,44 @@ int compareVersions(string ver1, string ver2) {
         ver2 = "0" + ver2;
     }
 
+    // Find out how many decimals are in each number
+    int ver1NumDecimals = 0;
+    int ver2NumDecimals = 0;
+
+    // Find out how many decimals are in each version
+    for(int i = 0; i < ver1.length(); i++)
+    {
+        if(ver1[i] == '.')
+        {
+            ver1NumDecimals++;
+        }
+    }
+    for(int i = 0; i< ver2.length(); i++)
+    {
+        if(ver2[i] == '.')
+        {
+            ver2NumDecimals++;
+        }
+    }
+
+    // Set both versions to have the same number of decimal points
+    if(ver1NumDecimals < ver2NumDecimals)
+    {
+        while(ver1NumDecimals < ver2NumDecimals)
+        {
+            ver1 += ".0";
+            ver1NumDecimals++;
+        }
+    }
+    else
+    {
+        while(ver2NumDecimals < ver1NumDecimals)
+        {
+            ver2 += ".0";
+            ver2NumDecimals++;
+        }
+    }
+
     // End versions with a decimal. Need this for later
     ver1 += '.';
     ver2 += '.';
@@ -34,7 +72,6 @@ int compareVersions(string ver1, string ver2) {
     // For loop to compare version numbers
     for(int i = 0; i < longerVersionLength; i++)
     {
-        // cout << "ver1[" << i << "]: " << ver1[i] << endl;
         // Check if a decimal point has been reached
         if(ver1[i] == '.')
         {
@@ -43,17 +80,13 @@ int compareVersions(string ver1, string ver2) {
             // Create an empty string variable for holding the partition's number
             string ver1PartitionNumberString = "";
 
-            // cout << "Start: " << startOfVer1Number << endl;
-            // cout << "End: " << endOfVer1Number << endl;
-
             // Get the whole number for this partition
             for(int j = startOfVer1Number + 1; j < endOfVer1Number; j++)
             {
-                // cout << "ver1[j]: " << ver1[j] << endl;
                 ver1PartitionNumberString += ver1[j];
             }
 
-            // Integer variable Convert partition number from a string to an integer
+            // Integer variables for comparing numbers
             int ver1ComparisonNumber = stoi(ver1PartitionNumberString);
             int ver2ComparisonNumber; // The value of this will be set later
 
@@ -63,7 +96,6 @@ int compareVersions(string ver1, string ver2) {
                 // Check if a decimal point has been reached
                 if(ver2[k] == '.')
                 {
-                    // cout << "Found a decimal point in ver2!" << endl;
                     // Set the end of the partition
                     endOfVer2Number = k;
                     // Create an empty string variable for holding the partition's number
@@ -74,8 +106,6 @@ int compareVersions(string ver1, string ver2) {
                     {
                         ver2PartitionNumberString += ver2[l];
                     }
-
-                    // cout << "ver2PartitionNumberString " << ver2PartitionNumberString << endl; 
 
                     // Integer variable that converts partition number from string to integer
                     ver2ComparisonNumber = stoi(ver2PartitionNumberString);
@@ -91,17 +121,22 @@ int compareVersions(string ver1, string ver2) {
             // Reset startOfVer1Number variable
             startOfVer1Number = endOfVer1Number;
 
-            // cout << ver1PartitionNumberString << endl;
-
-            cout << "Comparing " << ver1ComparisonNumber << " to " << ver2ComparisonNumber << endl;
-
-
-
+            // Compare numbers
+            if(ver1ComparisonNumber > ver2ComparisonNumber)
+            {
+                cout << ver1 << " > " << ver2 << endl;
+                return 1;
+            }
+            else if(ver2ComparisonNumber > ver1ComparisonNumber)
+            {
+                cout << ver1 << " < " << ver2 << endl;
+                return -1;
+            }
         }
     }
 
-    
-    return -1;
+    cout << ver1 << " = " << ver2 << endl;
+    return 0;
 }
 int main() {
     // your target function will be tested as such, with 
@@ -109,6 +144,6 @@ int main() {
     // also test your own code this way:
     // cout << (compareVersions("0.1", "0.1") == 0); // 1, which is true
     // cout << compareVersions("0.1", "0.1"); // 0
-    cout << compareVersions("0.123.5.5.4", "6.7.1");
+    cout << compareVersions("0.1.2.3.4.5.6.7", "0.3");
     return 0;
 }
