@@ -3,9 +3,9 @@
 using namespace std;
 
 /**
-* PURPOSE:
-* PARAMETERS:
-* RETURN VALUES:
+* PURPOSE: To determine which of two version numbers is the latest
+* PARAMETERS: The function compareVersions takes in two string arguments for the two version numbers to compare
+* RETURN VALUES: The function compareVersions returns one of three values based on the compaarison. The funciton returns 1 if ver1 is the latest, -1 if ver2 is the latest, and 0 if both are equal 
 */ 
 int compareVersions(string ver1, string ver2) {
     // Versions cannot start with a decimal
@@ -22,7 +22,6 @@ int compareVersions(string ver1, string ver2) {
     int ver1NumDecimals = 0;
     int ver2NumDecimals = 0;
 
-    // Find out how many decimals are in each version
     for(int i = 0; i < ver1.length(); i++)
     {
         if(ver1[i] == '.')
@@ -60,9 +59,6 @@ int compareVersions(string ver1, string ver2) {
     ver1 += '.';
     ver2 += '.';
 
-    // Set a variable for the length of the longer version string
-    int longerVersionLength = (ver1.length() >= ver2.length()) ? ver1.length() : ver2.length();
-
     // Initialize partition splitting variables
     int startOfVer1Number = -1; 
     int endOfVer1Number = 0;
@@ -70,12 +66,12 @@ int compareVersions(string ver1, string ver2) {
     int endOfVer2Number = 0;
     
     // For loop to compare version numbers
-    for(int i = 0; i < longerVersionLength; i++)
+    for(int i = 0; i < ver1.length(); i++)
     {
         // Check if a decimal point has been reached
         if(ver1[i] == '.')
         {
-            // Set the end of the partition
+            // Set the end of this partition
             endOfVer1Number = i;
             // Create an empty string variable for holding the partition's number
             string ver1PartitionNumberString = "";
@@ -86,17 +82,20 @@ int compareVersions(string ver1, string ver2) {
                 ver1PartitionNumberString += ver1[j];
             }
 
-            // Integer variables for comparing numbers
+            // Reset startOfVer1Number variable
+            startOfVer1Number = endOfVer1Number;
+
+            // Create integer variables for comparing numbers
             int ver1ComparisonNumber = stoi(ver1PartitionNumberString);
             int ver2ComparisonNumber; // The value of this will be set later
 
             // Get the whole number for the next ver2 partition
-            for(int k = startOfVer2Number + 1; k < longerVersionLength; k++)
+            for(int k = startOfVer2Number + 1; k < ver2.length(); k++)
             {
                 // Check if a decimal point has been reached
                 if(ver2[k] == '.')
                 {
-                    // Set the end of the partition
+                    // Set the end of this partition
                     endOfVer2Number = k;
                     // Create an empty string variable for holding the partition's number
                     string ver2PartitionNumberString = "";
@@ -107,35 +106,32 @@ int compareVersions(string ver1, string ver2) {
                         ver2PartitionNumberString += ver2[l];
                     }
 
-                    // Integer variable that converts partition number from string to integer
-                    ver2ComparisonNumber = stoi(ver2PartitionNumberString);
-
                     // Reset start of ver2 number variable
                     startOfVer2Number = endOfVer2Number;
+                    
+                    // Set the integer variable for comparing numbers
+                    ver2ComparisonNumber = stoi(ver2PartitionNumberString);
 
                     // exit this loop
                     break;
                 }
             }
 
-            // Reset startOfVer1Number variable
-            startOfVer1Number = endOfVer1Number;
-
             // Compare numbers
             if(ver1ComparisonNumber > ver2ComparisonNumber)
             {
-                cout << ver1 << " > " << ver2 << endl;
+                // Return 1 if ver1 is bigger
                 return 1;
             }
             else if(ver2ComparisonNumber > ver1ComparisonNumber)
             {
-                cout << ver1 << " < " << ver2 << endl;
+                // Return -1 if ver2 is bigger
                 return -1;
             }
         }
     }
 
-    cout << ver1 << " = " << ver2 << endl;
+    // If the numbers are the same, return 0
     return 0;
 }
 int main() {
@@ -143,7 +139,6 @@ int main() {
     // random input. To streamline your testing, you may
     // also test your own code this way:
     // cout << (compareVersions("0.1", "0.1") == 0); // 1, which is true
-    // cout << compareVersions("0.1", "0.1"); // 0
-    cout << compareVersions("0.1.2.3.4.5.6.7", "0.3");
+    cout << compareVersions("0.1", "0.1"); // 0
     return 0;
 }
