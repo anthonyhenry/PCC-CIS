@@ -3,9 +3,9 @@
 using namespace std;
 
 /**
- * PURPOSE:
- * PARAMETERS:
- * RETURN VALUES:
+ * PURPOSE: To return 1 less than the number represented in a vector
+ * PARAMETERS: The function minusMinusN takes in a vector on integers as an argument
+ * RETURN VALUES: The function minusMinusN returns 1 less than the number represented by the vector passed in
  */
 vector<int> minusMinusN(vector<int> digits) {
     // YOUR CODE HERE
