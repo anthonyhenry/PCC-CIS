@@ -3,9 +3,9 @@
 using namespace std;
 
 /**
- * PURPOSE:
- * PARAMETERS:
- * RETURN VALUES:
+ * PURPOSE: The getMaxProfit function recommends the maximum profit an investor can make by placing one buy and one sell order in the time slice represented by the prices vector 
+ * PARAMETERS: The getMaxProfit function takes an integer vector of prices listed in chronological order
+ * RETURN VALUES: The getMaxProfit function returns the maximum profit an investor can make by placing just one buy and sell order
  */
 int getMaxProfit(vector<int> &prices) {
     // Variable to hold max profit return value
@@ -47,7 +47,7 @@ int getMaxProfit(vector<int> &prices) {
 }
 int main() {
     // your target function will be tested as such, with random input like so
-    vector<int> arr/*{1, 2, 4}*/  {1,2,2,2,2,2};
+    vector<int> arr{1, 2, 4};
     cout << getMaxProfit(arr); // 3
     return 0;
 }
