@@ -8,41 +8,46 @@ using namespace std;
  * RETURN VALUES:
  */
 int getMaxProfit(vector<int> &prices) {
-    cout << prices.size() << endl;
-
+    // Variable to hold max profit return value
     int highestProfit = 0;
 
     // Make sure there is more than one item in the vector
     if(prices.size() > 1)
     {
+        // Working backwards, look for the highest price in the vector
+        int highestPrice = 0;
         for(int i = prices.size() - 1; i > 0; i--)
         {
-            for(int j = i - 1; j >= 0; j--)
+            if(prices.at(i) > highestPrice)
             {
-                int endPrice = prices.at(i);
-                int startPrice = prices.at(j);
-                int profit = endPrice - startPrice;
+                // New highest price found
+                highestPrice = prices.at(i);
 
-                cout << "Comparing " << endPrice << " - " << startPrice << " : " << profit;
-
-                if(profit > highestProfit)
+                // Look for the lowest price that comes before the new highest price
+                int lowestPriceBeforeHighestPrice = prices.at(i); // Initialize this varaible to be the same as highest price to start
+                for(int j = i - 1; j >= 0; j--)
                 {
-                    highestProfit = profit;
-                    cout << " |New Max Found|";
-                }
-
-                cout << endl;
+                    if(prices.at(j) < lowestPriceBeforeHighestPrice)
+                    {
+                        lowestPriceBeforeHighestPrice = prices.at(j);
+                        // Find the difference between the highest price and the lowest price before it
+                        int profit = highestPrice - lowestPriceBeforeHighestPrice;
+                        // Check if a new highest profit has been found
+                        if(profit > highestProfit)
+                        {
+                            highestProfit = profit;
+                        }
+                    }
+                }    
             }
         }
     }
-
-    cout << "Highest Profit: " << highestProfit << endl;
 
     return highestProfit;
 }
 int main() {
     // your target function will be tested as such, with random input like so
-    vector<int> arr/*{1, 2, 4}*/ {3,1,5,2,4};
+    vector<int> arr/*{1, 2, 4}*/  {1,2,2,2,2,2};
     cout << getMaxProfit(arr); // 3
     return 0;
 }
