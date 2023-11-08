@@ -15,13 +15,15 @@ public:
 // ------------------------------------------------------------
 
 /**
- * PURPOSE:
- * PARAMETERS:
- * RETURN VALUES:
+ * PURPOSE: Determine the route down a 2D pyramid of numbers that earns you the maximum amount of points
+ * PARAMETERS: The getMaxPoints function takes a 2D vector of integers
+ * RETURN VALUES: The getMaxPoints function returns the maximumn amount of points that can be earned in the given vector
  */
 int CIS14::getMaxPoints(vector<vector<int>> &maze) {
-    if (maze.size() == 0) {
-        return 0; // Empty input, no points can be earned
+    // Make sure the maze is not empty
+    if (maze.size() == 0)
+    {
+        return 0;
     }
 
     //Start at row 2 (maze[1]) and work down the pyramid comparing with the numbers above to see which results in a higher number
@@ -36,11 +38,13 @@ int CIS14::getMaxPoints(vector<vector<int>> &maze) {
             {
                 maze[row][col] += maze[row - 1][col];
             }
+
             // For the last column in a row, can only add with the number in the previous column of the row above
             else if (col == maze[row].size() - 1)
             {
                 maze[row][col] += maze[row - 1][col - 1];
             }
+
             // For all other columns, need to check which previous number is larger and add with that number
             else
             {
@@ -61,14 +65,19 @@ int CIS14::getMaxPoints(vector<vector<int>> &maze) {
         }
     }
 
-    // Find the maximum points in the last row (bottom row)
-    int maxPoints = maze[maze.size() - 1][0];
+    // The bottom row of the pyramid has the largest numbers, loop through to find which one is the max
+    int maxPoints = 0;
+    for (int i = 0; i < maze[maze.size() - 1].size(); i++)
+    {
+        cout << maze[maze.size() - 1][i] << " ";
 
-    cout << "maxPoints" << endl;
-
-    for (int col = 1; col < maze[maze.size() - 1].size(); col++) {
-        maxPoints = max(maxPoints, maze[maze.size() - 1][col]);
+        if(maze[maze.size() - 1][i] > maxPoints)
+        {
+            maxPoints = maze[maze.size() - 1][i];
+        }
     }
+
+    cout << endl;
 
     return maxPoints;
 }
@@ -80,10 +89,7 @@ int main()
     
     // Your target method will be tested as such, with random input
     // as the following example illustrates
-    vector<vector<int>> /*maze = {{0}, {4,1}, {5,3,8}, {1,6,7,3}};*/maze = {{1}, {1,22305}, {1,29394,1}, {1,1,1234,1}, {1,1,3,1,10}}; // output = 52937
-
-
-
+    vector<vector<int>> maze = {{0}, {4,1}, {5,3,8}, {1,6,7,3}};
     cout << cis14.getMaxPoints(maze) << endl; // 16
     
     return 0;
