@@ -59,8 +59,8 @@ int main()
     
     // Your target method will be tested with random input such
     // as the following example; the actual test cases will vary
-    vector<int> v = /*{1,2,4}*/ {0,0,0};
-    vector<int> ans = cis14.getMaxHits(v,/*1*/10);
+    vector<int> v = /*{1,2,4}*/ {4, 4, 4, 3, 5, 2,1};
+    vector<int> ans = cis14.getMaxHits(v,/*1*/3);
     
     // You may use the following code to print out your returned vector's content
     for (int i=0; i<ans.size(); i++) cout << ans[i] << ((i==ans.size()-1) ? "" : ",");
