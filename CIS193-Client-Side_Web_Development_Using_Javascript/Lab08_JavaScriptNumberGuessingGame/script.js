@@ -6,7 +6,7 @@ function playGuessingGame(numToGuess, numTriesAllowed = 10)
     let userGuess = prompt("Enter a number between 1 and 100.");
 
     // Loop until the user guesses correctly, or the max number of tries has been reached
-    while(userGuess != numToGuess && guessCounter < numTriesAllowed)
+    while(guessCounter <= numTriesAllowed)
     {
         // Exit loop if the user hit cancel
         if(userGuess === null)
@@ -16,14 +16,17 @@ function playGuessingGame(numToGuess, numTriesAllowed = 10)
 
         // Convert the userGuess variable
         userGuess = parseInt(userGuess);
-
-        console.log(userGuess);
         
         // Make sure the user guessed a number
         if(isNaN(userGuess) == true)
         {
             userGuess = prompt("Please enter a number.");
             continue;
+        }
+        // Exit if the user entered the correct value
+        else if(userGuess == numToGuess)
+        {
+            break;
         }
         // Guess is too small
         else if(userGuess < numToGuess)
