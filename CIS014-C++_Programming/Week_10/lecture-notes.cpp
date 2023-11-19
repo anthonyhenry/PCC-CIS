@@ -12,7 +12,7 @@ class MyClass								// Use the keyword class to define a custom class. At runti
 
 int MyClass::myFunction(int x)				// To define a member function, you need to use the class scope operator "::" with the class name
 {
-    return 1;
+    return x;
 }
 
 int main()
