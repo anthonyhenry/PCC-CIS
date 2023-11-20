@@ -57,9 +57,9 @@ int getNodeValue(Node* list, int pos)
 
 
 /**
- * PURPOSE: 
- * PARAMETERS:
- * RETURN VALUE:
+ * PURPOSE: To find the sum of two positive integers that are represented in linked lists
+ * PARAMETERS: The addLists method takes in two linked list pointers as arguments
+ * RETURN VALUE: The addLists method returns a linked list pointer for the linked list representing the sum
 */
 Node* CIS14::addLists(Node* l1, Node* l2) {
     // Get the length of each list
@@ -68,62 +68,63 @@ Node* CIS14::addLists(Node* l1, Node* l2) {
 
     // Initialize a variable for the max size that the sum can be. This is whichever linked list is longer + 1 since there could be a carry that increases the digit count
     const int maxSumSize = (list1Length >= list2Length) ? (list1Length + 1) : (list2Length + 1);
-
-    // int sums[maxSumSize] = {}; // Initialize array to be all zeroes
     
     // Initialize a carry variable for sums that have a tens value that needs to be carried
     int carry = 0;
-
-    // cout << "Returned: " << getNodeValue(l1, 0) << endl;
-
     // Create a temporary list for holding the sum value in reverse order
     Node tempList(0);
     Node* currentTempPos = &tempList;
 
+    // For loop to go through the lists backwards and add the node values at each position
     for(int i = (maxSumSize - 1); i >= 0; i--)
     {
-        int digitPositionFromEnd = (maxSumSize - 1) - i;
-        // cout << "pos: " << digitPositionFromEnd << endl;
+        int nodePositionFromEnd = (maxSumSize - 1) - i;
+        // cout << "position from end: " << nodePositionFromEnd << endl;
 
         // Initialize numbers to add as 0
         int num1 = 0;
         int num2 = 0;
 
-
-        if(digitPositionFromEnd < list1Length)
+        // Only update the numbers to add if there is enough nodes in the linked list
+        if(nodePositionFromEnd < list1Length)
         {
-            num1 = getNodeValue(l1,digitPositionFromEnd);
+            num1 = getNodeValue(l1,nodePositionFromEnd);
         }
-
-        if(digitPositionFromEnd < list2Length)
+        if(nodePositionFromEnd < list2Length)
         {
-            num2 = getNodeValue(l2,digitPositionFromEnd);
+            num2 = getNodeValue(l2,nodePositionFromEnd);
         }
-
-        // cout << "test " << sums[i] << endl;
+        
+        // Get the sum of the two numbers
         int sum = carry + num1 + num2;
         // cout << "carry: " << carry << " | num1: " << num1 << " | num2: " << num2 << " | sum: " << sum % 10 << endl; 
-        carry = sum/10;
-        sum = sum % 10;
-        cout << "adding " << sum << " to list, after " << currentTempPos->val << endl;
+        // Separate the tens and the ones place
+        carry = sum/10; // tens
+        sum = sum % 10; // ones
+        // cout << "adding " << sum << " to list, after " << currentTempPos->val << endl;
+        // Add the ones place to the temporary linked list
         currentTempPos->next = new Node(sum);
+        // Move on to the next node in the list
         currentTempPos = currentTempPos->next;
     }
 
+    // Create a list to return
     Node answerList(0);
     Node* current = &answerList;
 
+    // Loop through the temporary list backwards
     for(int i = (maxSumSize - 1); i >= 0; i--)
     {
-        int digitPositionFromEnd = (maxSumSize - 1) - i;
-        cout << "digitPositionFromEnd: " << digitPositionFromEnd << endl;
-        int num = getNodeValue(&tempList,digitPositionFromEnd);
-        cout << "value: " << num << endl;
+        int nodePositionFromEnd = (maxSumSize - 1) - i;
+        int num = getNodeValue(&tempList, nodePositionFromEnd);
+        // cout << "value: " << num << endl;
 
-        if(digitPositionFromEnd == 0 && num == 0)
+        // If the first position from the end is 0, skip it
+        if(nodePositionFromEnd == 0 && num == 0)
         {
             continue;
         }
+        // Otherwise add the number to the answer list
         else
         {
             current->next = new Node(num);
@@ -131,18 +132,6 @@ Node* CIS14::addLists(Node* l1, Node* l2) {
             // cout << num << endl;
         }
     }
-    cout << "---" << endl;
-
-    // // cout << endl << current->val;
-    // current->next = new Node(2);
-    // current = current->next;
-    // // cout << endl << current->val;
-
-    // int tempListLength = getListLength(currentTempPos);
-    // cout << tempListLength << endl;
-    // cout << currentTempPos->val << endl;
-    // currentTempPos = currentTempPos->next;
-    // cout << currentTempPos->val << endl;
 
     return answerList.next;
 };
