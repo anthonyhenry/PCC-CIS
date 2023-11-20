@@ -19,6 +19,13 @@ public:
 // ------------------------------------------------------------
 
 // Optional: you may add any global function, variables here
+int getListLength(Node* list)
+{
+    int listLength = 0;
+    cout << list;
+    return 0;
+}
+
 
 /**
  * PURPOSE: 
@@ -26,7 +33,12 @@ public:
  * RETURN VALUE:
 */
 Node* CIS14::addLists(Node* l1, Node* l2) {
-    // YOUR CODE HERE
+    Node answerList(0);  // Dummy head to simplify the code
+    Node* current = &answerList;
+    
+    getListLength(l1);
+
+    return answerList.next;
 };
 
 int main()
