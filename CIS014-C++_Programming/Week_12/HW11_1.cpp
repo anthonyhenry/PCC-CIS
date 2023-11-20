@@ -51,6 +51,7 @@ int getNodeValue(Node* list, int pos)
         list = list->next;
         currentPosition++;
     }
+
     // Return the value at the specified position 
     return list->val;
 }
@@ -132,7 +133,7 @@ Node* CIS14::addLists(Node* l1, Node* l2) {
             // cout << num << endl;
         }
     }
-
+    delete currentTempPos;
     return answerList.next;
 };
 
@@ -157,7 +158,7 @@ int main()
     // Second input list: 9->9
     Node second1(9), second2(9);
     second1.next = &second2;
-
+    
     // Adding:
     //    2->3->4->8
     //          9->9
@@ -178,6 +179,7 @@ int main()
 
     // If your add(...) method allocated heap memory, you
     // should deallocate them here to avoid memory leaks. 
+    delete ans;
 
     return 0;
 }
