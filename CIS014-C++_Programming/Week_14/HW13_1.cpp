@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 /**
- * PURPOSE: 
- * PARAMETERS:
- * RETURN VALUE:
+* PURPOSE: To determine whether a set of mailbox signs (or street addresses) is possible given an available plastic letter inventory
+ * PARAMETERS: The function getNumPossibleSigns takes in several parameters. a string of available letters called letterInventory, an array of addresses, and a length for said array
+ * RETURN VALUE: The function getNumPossibleSigns returns an integer value for the possible number of signs from the address array that can be completed with the letter inventory
 */ 
 class Solution {
 public:
@@ -57,9 +57,9 @@ int Solution::getNumPossibleSigns(
                     // Replace the character in the inventory copy string with a space
                     inventoryCopy[k] = ' '; // Can alternatively erase the character with the line above
                     cout << "\t\t" << inventoryCopy << " | length = " << inventoryCopy.length() << endl;
-                    // set the matchFound flag to true
+                    // Set the matchFound flag to true
                     matchFound = true;
-                    // move on to the next character in the address name
+                    // Move on to the next character in the address name
                     break;
                 }
             }
