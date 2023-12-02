@@ -84,8 +84,8 @@ int Solution::getNumPossibleSigns(
 int main() {
   // Your code may be tested as follows, with different input values
   Solution solution;
-  string inventory = /*"AAAADFADFA223432112"*/"ABCDAAST";
-  string addresses[] = /*{"S1","CAD","G2"}*/{ "999 S ST" , "A BAD ST" , "B BAD ST" }; // returns 2
+  string inventory = "AAAADFADFA223432112";
+  string addresses[] = {"S1","CAD","G2"}; // returns 0
   cout << solution.getNumPossibleSigns(&inventory, 
             addresses, 
             sizeof(addresses)/sizeof(addresses[0]));
