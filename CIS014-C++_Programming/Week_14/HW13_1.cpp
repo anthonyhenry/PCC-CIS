@@ -20,7 +20,7 @@ int Solution::getNumPossibleSigns(
     // Loop through all the addresses in the addresses array
     for(int i = 0; i < length; i++)
     {
-        cout << endl << "---" << endl << "Now checking: " << addresses[i] << " | size = " << addresses[i].length() << endl << "---" << endl << endl;
+        cout << endl << "Now checking: " << addresses[i] << " | size = " << addresses[i].length() << endl;
         // Create a copy of the inventory string that can be freely edited for comparing
         string inventoryCopy = letterInventory[0];
 
@@ -34,25 +34,32 @@ int Solution::getNumPossibleSigns(
             for(int k = 0; k < inventoryCopy.length(); k++)
             // for(int k = inventoryCopy.length() - 1; k >= 0; k--)
             {
-                cout << "Comparing " << addresses[i][j] << "(" << j << ")" << " with " << inventoryCopy[k] << "(" << k << ")" << endl;
-
-                // Skip spaces
+                // Skip spaces in the address name and the inventory copy string
                 if(addresses[i][j] == ' ')
                 {
-                    cout << "__Skipping the space__" << endl;
                     matchFound = true;
                     break;
                 }
+                if(inventoryCopy[k] == ' ')
+                {
+                    continue;
+                }
+
+                cout << "\tComparing " << addresses[i][j] << "(" << j << ")" << " with " << inventoryCopy[k] << "(" << k << ")" << endl;
 
                 // Check if the letter from the address matches the one in inventory
                 if(addresses[i][j] == inventoryCopy[k])
                 {
-                    cout << "Found a match for " << addresses[i][j] << "(" << j << ") at " << k << "(" << inventoryCopy[k] << ")" << endl;
+                    cout << "\t\tFound a match for " << addresses[i][j] << "(" << j << ") at " << k << "(" << inventoryCopy[k] << ")" << endl;
                     
-                    cout << inventoryCopy << endl;
-                    inventoryCopy.erase(k,1);
-                    cout << inventoryCopy << endl;
+                    cout << "\t\t" << inventoryCopy << " | length = " << inventoryCopy.length() << endl;
+                    // inventoryCopy.erase(k,1);
+                    // Replace the character in the inventory copy string with a space
+                    inventoryCopy[k] = ' '; // Can alternatively erase the character with the line above
+                    cout << "\t\t" << inventoryCopy << " | length = " << inventoryCopy.length() << endl;
+                    // set the matchFound flag to true
                     matchFound = true;
+                    // move on to the next character in the address name
                     break;
                 }
             }
@@ -66,10 +73,9 @@ int Solution::getNumPossibleSigns(
             // Increment possible signs variable if all address letters were matched
             else if(j == addresses[i].length()-1)
             {
-                cout << "Success! " << addresses[i] << endl;
+                cout << "---SUCCESS! " << addresses[i] << "---" <<  endl;
                 possibleSigns++;
             }
-            cout << endl;
         }
     }
 
@@ -78,8 +84,8 @@ int Solution::getNumPossibleSigns(
 int main() {
   // Your code may be tested as follows, with different input values
   Solution solution;
-  string inventory = /*"AAAADFADFA223432112"*/"AAAABCCC123456789";
-  string addresses[] = /*{"S1","CAD","G2"}*/{ "123C" , "123A" , "123 ADA"  }; // returns 2
+  string inventory = /*"AAAADFADFA223432112"*/"ABCDAAST";
+  string addresses[] = /*{"S1","CAD","G2"}*/{ "999 S ST" , "A BAD ST" , "B BAD ST" }; // returns 2
   cout << solution.getNumPossibleSigns(&inventory, 
             addresses, 
             sizeof(addresses)/sizeof(addresses[0]));
