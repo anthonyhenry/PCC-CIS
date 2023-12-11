@@ -13,39 +13,78 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // TODO: Modify to use Fetch API
-async function fetchQuotes(topic, count) {
+function fetchQuotes(topic, count) {
    // Get the api url
    let url = "https://wp.zybooks.com/quotes.php?topic=" + topic + "&count=" + count;
    
-   // Fetch API
-   let response = await fetch(url);
-   // Get the text response from the api
-   let quotes = await response.text();
-   // Convert the api response string to a JSON object
-   quotes = JSON.parse(quotes);
+   fetch(url)
+      .then(function(response){
+         console.log(response);
+         return response.text();
+      })
+      .then(function(text){
+         // Convert the api response string to a JSON object
+         console.log(text);
+         quotes = JSON.parse(text);
 
-   // Create a variable for storing html edits
-   let html = "";
+         // Create a variable for storing html edits
+         let html = "";
 
-   // Check if the api response returned an error
-   if(quotes.error)
-   {
-      // Display the error message
-      html += quotes.error;
-   }
-   else
-   {
-      html += "<ol>"
-      // Iterate through the quotes json
-      for(let quote of quotes)
-      {
-         // Add list items for each quote
-         html += "<li>" + quote.quote + " - " + quote.source + "</li>" 
-      }
-      html += "</ol>";
-   }
+         // Check if the api response returned an error
+         if(quotes.error)
+         {
+            // Display the error message
+            html += quotes.error;
+         }
+         else
+         {
+            html += "<ol>"
+            // Iterate through the quotes json
+            for(let quote of quotes)
+            {
+               // Add list items for each quote
+               html += "<li>" + quote.quote + " - " + quote.source + "</li>" 
+            }
+            html += "</ol>";
+         }
 
-   // Update the quotes div's inner html
-   document.querySelector("#quotes").innerHTML = html;
+         // Update the quotes div's inner html
+         document.querySelector("#quotes").innerHTML = html;
+      })
+      .catch(function(error) {
+         console.log("Request failed", error)
+      });   
+
+
+   // // Fetch API
+   // let response = await fetch(url);
+   // // Get the text response from the api
+   // let quotes = await response.text();
+   // // Convert the api response string to a JSON object
+   // quotes = JSON.parse(quotes);
+
+   // // Create a variable for storing html edits
+   // let html = "";
+
+   // // Check if the api response returned an error
+   // if(quotes.error)
+   // {
+   //    // Display the error message
+   //    html += quotes.error;
+   // }
+   // else
+   // {
+   //    html += "<ol>"
+   //    // Iterate through the quotes json
+   //    for(let quote of quotes)
+   //    {
+   //       // Add list items for each quote
+   //       html += "<li>" + quote.quote + " - " + quote.source + "</li>" 
+   //    }
+   //    html += "</ol>";
+   // }
+
+   // // Update the quotes div's inner html
+   // document.querySelector("#quotes").innerHTML = html;
 }
 
