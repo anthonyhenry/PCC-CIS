@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <script>
+            // In JavaScript, a variable can be declared after it has been used
+            // Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope
+            
+            // Assign 7 to x
+            x = 7;
+            // Log x
+            console.log(x);
+            // Declare x
+            var x;
+
+            // Variables defined with let and const are hoisted to the top of the block, but not initialized.
+            // Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
+
+            // Using a let variable before it is declared will result in a ReferenceError.
+            try
+            {
+                myName = "Anthony";
+                let myName;
+            }
+            catch(err)
+            {
+                console.log(err);
+            }
+
+            // Using a const variable before it is declared, is a syntax error, so the code will simply not run.
+
+            // Javascript only hoists declarations, not initializations
+            var digit1 = 1;
+            console.log(digit1 + " " + digit2);
+            var digit2 = 2;
+            // Because of hoisting, digit2 has been declared before it is used, but because initializations are not hoisted, the value of digit2 is undefined.
+
+            // To avoid bugs, always declare all variables at the beginning of every scope.
+            // Since this is how JavaScript interprets the code, it is always a good rule.
+
+            function let()
+            {
+                // Variables declared with let and const have Block Scope
+                // Variables declared with let and const must be Declared before use
+                // Variables declared with let and const cannot be Redeclared in the same scope
+
+                // Variables declared with the var always have Global Scope.
+                
+                var a = 1;
+                console.log(a);
+                // a is 1
+                var a = 2;
+                console.log(a);
+                // Now a is 2
+
+                let b = 3;
+                console.log(b);
+                // b is 3
+                // let b = 4
+                // ^This is not allowed. Doing this results in a syntax error
+
+                // You can declare many variables in one statement.
+                let candidate = "Joe Biden", party = "Democrat";
+                console.log(candidate + ", " + party);
+            }
+
+            function _const()
+            {
+                // JavaScript const variables must be assigned a value when they are declared
+                const pie = 3.14;
+
+                // Use const when you declare:
+                    // A new Array
+                    // A new Object
+                    // A new Function
+                    // A new RegExp
+
+                // You can create a constant array:
+                const games = ["Super Mario Bros.", "The Legend of Zelda", "Sonic the Hedgehog"];
+                console.log(games);
+
+                // You can change an element:
+                games[0] = "Donkey Kong";
+                console.log(games);
+
+                // You can add an element:
+                games.push("Metroid");
+                console.log(games);
+
+                // You can create a const object:
+                const game = {name:"World of Warcraft", developer:"Blizzard", genre:"MMO"};
+                console.log(game);
+                
+                // You can change a property:
+                game.genre = "MMORPG";
+                console.log(game);
+
+                // You can add a property:
+                game.release = "November 23, 2004";
+                console.log(game)
+            }
+
+            // Default to const, because it cannot be re-assigned or re-declared
+            // Use let when you want to re-assign the variable in future
+            // Always prefer using let over var and const over let
+
+
+            hoisting();
+            let();
+            _const(); // Using _ because const is a keyword
+        </script>
+    </body>
+</html>
