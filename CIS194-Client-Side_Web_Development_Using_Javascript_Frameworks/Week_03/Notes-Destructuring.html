@@ -21,6 +21,12 @@
             console.log(i);
             console.log(j);
 
+            // You can include mathematical operations in destructuring
+            let [s, t] = [1, 2];
+            [s, t] = [s + 1, t + 1];
+            console.log(s);
+            console.log(t);
+
             // Destructuring with key value object pairs
             ({a,b, ...rest} = {a: 10, b: 20, c: 30, d: 40})
             console.log(a); // a equals 10
