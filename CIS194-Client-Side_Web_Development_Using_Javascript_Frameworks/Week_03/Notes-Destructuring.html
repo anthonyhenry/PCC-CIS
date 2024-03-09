@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        
+        <script>
+            // Destructuting makes it possible to extract values from an array, object, etc into distinct variables
+            let a, b, rest;
+            [a,b, ...rest] = [10, 20, 30, 40, 50];
+            console.log(a); // a equals 10
+            console.log(b); // b equals 20
+            console.log(rest); // rest equals the array [30, 40, 50]
+
+            // Destructuring with key value object pairs
+            ({a,b, ...rest} = {a: 10, b: 20, c: 30, d: 40})
+            console.log(a); // a equals 10
+            console.log(b); // b equals 20
+            console.log(rest); // rest equals the object {c: 30, d: 40}
+
+            // Destructuring with arrays
+            const foo = ["one", "two", "three"]
+            const [x, y, z, w="default"] = foo;
+            console.log(x); // x equals "one"
+            console.log(y); // y equals "two"
+            console.log(z); // z equals "three"
+            console.log(w); // x equals "default" because there was no fourth value in the array so the provided default value was used instead. Without a default value, w would equal undefined
+
+            // Object Destructuring
+            let user = {
+                name: "Joe",
+                email: "joe@school.edu",
+                age: 20
+            }
+
+            // Destructuring with variable names that match property names assigns the corresponding property value to the variable
+            let {name, age} = user;
+            console.log(name); // name equals "Joe"
+            console.log(age); // age equals 20
+            // Be careful with typos when desturcturing objects this way
+        </script>
+    </body>
+</html>
