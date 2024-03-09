@@ -13,6 +13,14 @@
             console.log(b); // b equals 20
             console.log(rest); // rest equals the array [30, 40, 50]
 
+            // You can use destructuring to quickly swap variable values like so
+            let i = "i";
+            let j = "j";
+
+            [i,j] = [j, i];
+            console.log(i);
+            console.log(j);
+
             // Destructuring with key value object pairs
             ({a,b, ...rest} = {a: 10, b: 20, c: 30, d: 40})
             console.log(a); // a equals 10
