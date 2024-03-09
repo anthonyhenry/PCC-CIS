@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        
+        <script>
+            // Create a new Object called darthVader and add the following key/value pairs to it:
+                // a) allegiance/Empire;
+                // b) weapon/lightsabre;
+                // c) sith/true (boolean value).
+            let darthVader = {
+                allegiance: "Empire",
+                weapon: "lightsabre",
+                sith: true
+            };
+
+            // Access the properties that you have just declared by console-logging out the following details:
+                // a) The value of DarthVader's allegiance;
+                // b) The value of Darth Vader's weapon;
+                // c) The value of whether Darth Vader is a sith;
+                // d) The value of Jedi from Darth Vader (note Jedi may not exist; that is ok);
+                // e) The number of properties Darth Vader has
+            console.log("Darth Vader's allegiance is to the " + darthVader.allegiance);
+            console.log("Darth Vader's weapon of choice is a " + darthVader.weapon);
+            console.log("Darth Vader is a sith? " + darthVader.sith);
+            console.log("Darth Vader is a Jedi? " + darthVader.Jedi);
+            console.log(Object.keys(darthVader).length); 
+
+            // Add key/value pairs to darthVader that:
+                // a) Sets a key of children to 2;
+                // b) Sets a key of childNames to the array ['Luke', 'Leia'];
+                // c) Console log the children property and the value of the first element in the childNames array.
+            darthVader.children = 2;
+            darthVader.childNames = ['Luke', 'Leia'];
+            console.log(darthVader.children);
+            console.log("Darth Vader's first child is named "+ darthVader.childNames[0]);
+
+            // For this step, perform the following:
+                // a) Iterate over darthVader using a for...in loop that uses both the key and the value of each pair;
+                // b) Then, console-logging out each pair.
+            for(let key in darthVader)
+            {
+                console.log("Darth Vader's " + key + " is " + darthVader[key]);
+            }
+
+            // Manipulate the object by:
+                // a) Changing the value of allegiance to The light side and console-log darthVader;
+                // b) Deleting the key/value pair children of darthVader and console-log darthVader. Hint: use the code below:
+            darthVader.allegiance = "The light side";
+            console.log(darthVader);
+            delete darthVader.children;
+            console.log(darthVader);
+
+            // c) De-structuring the object, setting a variable for each of the keys in the object to the corresponding value in the object:
+            let {allegiance, weapon, sith, childNames} = darthVader;
+            console.log(darthVader);
+            console.log(allegiance);
+            console.log(weapon);
+            console.log(sith);
+            console.log(childNames);
+
+            // d) Lastly, clearing the darthVader object and console log it.
+            darthVader = {};
+            console.log(darthVader);
+        </script>
+    </body>
+</html>
