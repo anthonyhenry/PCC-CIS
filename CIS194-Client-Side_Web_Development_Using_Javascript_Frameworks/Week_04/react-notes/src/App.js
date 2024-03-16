@@ -50,6 +50,7 @@ function Sentences()
 {
   const my_projects = new Sentence("My", "Projects");
 
+  // If you are returning multiple lines of code, they must be encloded in ();
   return (
     <div>
       {my_projects.getSentence()}
@@ -63,7 +64,7 @@ function List_Projects()
   // Iterate through projects array to show projects as link elements
   return projects.map(project => // Arrow function
     <li><a href={project.link} target="_blank">{project.name}</a></li>
-  )
+  );
   
   // This is how you do the above without an arrow function
   // return projects.map(function(project){
