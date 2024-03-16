@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        
+        <script>
+            // Arguments key word
+                // Every function has an arguments object which lists each of the arguments passed through the function in key:value pairs
+            function listArguments()
+            {
+                console.log(arguments);
+            }
+
+            listArguments(1, "x", 3)
+            listArguments("a", 100);
+
+            // Rest parameter
+                // Wich ES6, you can use a rest parameter to pass an indefinite number of arguments to a function as an array
+            function restParameter(...restParam) // The rest parameter must be the last argument in a function and there can only be one rest parameter per function
+            {
+                console.log(restParam);
+            }
+
+            restParameter(2,"four",6);
+
+            // Spread Operator
+                // Spread syntax (...) allows you to pass an iterable through a function
+            const numbers = [10, 20, 30];
+            function spreadOperator()
+            {
+                for(let i = 0; i < arguments.length; i++)
+                {
+                    console.log(arguments[i]);
+                }
+            }
+
+            spreadOperator(...numbers);
+
+            // You can pass a spread operator as the different arguments in a function
+            function sum(x, y, z, a)
+            {
+                console.log(a); // Any argument that the spread operator does not supply is undefined
+                const result = x + y + z;                
+                console.log(x + " + " + y + " + " + z  + " = " + result);
+            }
+
+            sum(...numbers);
+            
+            // You can use commas with a spread operator to jump ahead in a list
+            [,,,...A] = [1,2,3,4,5,6,7,8,9] // This skips the first 3 elements in the list
+            console.log(A);
+
+            // Map function
+                // The array.map() function iterates through every item in a list and applies a function to them
+            const list = [1,2,3,4]
+            // This creates a new list that consists of the numbers in the list array times 2
+            const newList = list.map(function(listItem){
+                return listItem * 2; 
+            })
+            console.log(newList);
+
+            
+        </script>
+    </body>
+</html>
