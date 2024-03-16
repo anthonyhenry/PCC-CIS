@@ -32,6 +32,10 @@ class Sentence
 
 // The App component is the entry point and responsible for rendering stuff
 function App() {
+  
+  const hello_world = new Sentence("Hello", "World!");
+  const thank_you = new Sentence("Thank", "You!");
+
   return (
     <div className="App">
       <header className="App-header">
@@ -39,9 +43,23 @@ function App() {
         <ol>
           {/* This is how you create/intantiate a component*/}
           <Sentences/>
-          <List_Projects/> 
+          <List_Projects/>
+          {/* This is how you pass arguments/props through a component */}
+          <Hello first={hello_world} second={thank_you}/>
         </ol>
       </header>
+    </div>
+  );
+}
+
+// Component with props (arguments)
+function Hello(props)
+{
+  return (
+    <div>
+      {props.first.getSentence()}
+      <br/>
+      {props.second.getSentence()}
     </div>
   );
 }
