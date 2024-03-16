@@ -13,6 +13,21 @@ const projects = [
   }
 ];
 
+class Sentence
+{
+  constructor(word1, word2)
+  {
+    this.word1 = word1;
+    this.word2 = word2;
+  }
+
+  getSentence()
+  {
+    return this.word1 + " " + this.word2;
+  }
+
+}
+
 // Each function below is a React component
 
 // The App component is the entry point and responsible for rendering stuff
@@ -22,10 +37,22 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <ol>
-          {/* This is how you call a component*/}
+          {/* This is how you create/intantiate a component*/}
+          <Sentences/>
           <List_Projects/> 
         </ol>
       </header>
+    </div>
+  );
+}
+
+function Sentences()
+{
+  const my_projects = new Sentence("My", "Projects");
+
+  return (
+    <div>
+      {my_projects.getSentence()}
     </div>
   );
 }
