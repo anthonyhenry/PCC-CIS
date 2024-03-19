@@ -69,7 +69,33 @@
 
             let fruits = ['Apple','Orange','Banana'];
             let newFruitArray = [...fruits];
-            console.log(newFruitArray); // ['Apple','Orange','Banana']            
+            console.log(newFruitArray); // ['Apple','Orange','Banana']
+
+
+            // Given an array of numbers, return an array of each number, squared.
+            const nums = [1, 2, 3, 4, 5]
+
+            const numsSquared = nums.map(function(num){
+                return num *= num;
+            });
+
+            // This is the arrow function version of the above function
+            // const numsSquared = nums.map((num)=>
+            //     num *= num
+            // );
+
+            console.log(numsSquared)
+
+            // Given an array of strings, return an array where the first letter of each string is lower-cased
+            const names = ["React", "Is", "Fun"]
+
+            const lowercaseNames = names.map((name)=>
+                name = name.toLowerCase()
+            );
+            console.log(lowercaseNames);
+
+            
+
         </script>
     </body>
 </html>
