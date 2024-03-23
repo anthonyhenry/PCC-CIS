@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+// This is your callback from Search input. You will
+// take the event and print its value to the console 
+// log
+const handleSearch = event =>{
+  console.log(event.target.value);
+}
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>React: A JavaScript library</h1>
+
+      <Search onSearch={handleSearch} />
+
     </div>
   );
-}
+};
+
+const Search = props => (
+  <div>
+    <label htmlFor="search">Search: </label>
+    <input id="search" type="text" onChange={props.onSearch}/>
+  </div>
+);
 
 export default App;
