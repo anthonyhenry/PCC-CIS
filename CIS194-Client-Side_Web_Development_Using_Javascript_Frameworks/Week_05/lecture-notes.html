@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        
+        <script>
+            // Filtering Arrays
+                // You can use the filter method to get a new array with only elements that meet the requirements of the filter
+            const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+            const result = words.filter((word) => word.length > 6);
+
+            console.log(result); // Expected output: Array ["exuberant", "destruction", "present"]
+
+
+            // Sorting Arrays
+                // Use the sort method to get a new array of sorted values
+                // The default sort order is ascending
+            const months = ['March', 'Jan', 'Feb', 'Dec'];
+            months.sort();
+            console.log(months); // Expected output: Array ["Dec", "Feb", "Jan", "March"]
+            
+            // The sort method converts elements to strings then compares their UTF-16 code values
+            const array1 = [1, 30, 4, 21, 100000];
+            array1.sort();
+            console.log(array1); // Expected output: Array [1, 100000, 21, 30, 4]
+            
+            // To sort numbers in order you need to use a function in the sort method that returns the difference between two values
+            const numbers = [23, -1, 2, 5, 2, 4, 1, 212, 419, -20]
+            const sortedNumbers = numbers.sort(function(a,b){
+                console.log("Conparing " + a + " and " + b);
+                // console.log(b);
+                return a - b;
+            });
+            console.log(sortedNumbers);
+
+
+        </script>
+    </body>
+</html>
