@@ -19,7 +19,7 @@ const App = () => {
     setCheckTerm(evt.target.value);
     console.log(evt.target.value);
     // Set local storage input
-    localStorage.setItem('input', evt.target.value)
+    // localStorage.setItem('input', evt.target.value)
   };
 
   const hello_world = new Sentence('Hello', 'World!');
@@ -28,6 +28,15 @@ const App = () => {
   const [checkTerm, setCheckTerm] = React.useState(
     // Set term to input saved in local storage or nothing if local storage is empty 
     localStorage.getItem('input') || "nothing"
+  );
+
+  React.useEffect(
+    // useEffect takes two arguments, the first is a function
+    () => {
+      localStorage.setItem('input', checkTerm);
+    },
+    // The second argument is an array of values
+    [checkTerm]
   );
   
   return (
