@@ -18,15 +18,13 @@ const App = () => {
   const handleInput = evt => {
     setCheckTerm(evt.target.value);
     console.log(evt.target.value);
-    // Set local storage input
-    // localStorage.setItem('input', evt.target.value)
   };
 
   const hello_world = new Sentence('Hello', 'World!');
   const react_rocks = new Sentence('React', 'rocks!');
 
   const [checkTerm, setCheckTerm] = React.useState(
-    // Set term to input saved in local storage or nothing if local storage is empty 
+    // Set term to input saved in local storage or "nothing" if local storage is empty 
     localStorage.getItem('input') || "nothing"
   );
 
@@ -55,13 +53,14 @@ const App = () => {
   );
 };
 
-const Input = props => {  
+// You can destructure props so that you don't need to use props. before each prop
+const Input = ({onInput, userInput}) => {  
   return (
     <div>
       <label htmlFor="Check">Check: </label>
       {/* <input id="check" type="text" onChange={props.onInput} /> */}
-      <input id="check" type="text" value={props.userInput} onChange={props.onInput} />
-      <p>Checking for <b>{props.userInput}</b></p>
+      <input id="check" type="text" value={userInput} onChange={onInput} />
+      <p>Checking for <b>{userInput}</b></p>
     </div>
   );
 }
