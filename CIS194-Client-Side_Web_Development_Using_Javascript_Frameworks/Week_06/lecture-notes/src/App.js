@@ -54,16 +54,17 @@ const App = () => {
 };
 
 // You can destructure props so that you don't need to use props. before each prop
-const Input = ({onInput, userInput}) => {  
-  return (
-    <div>
-      <label htmlFor="Check">Check: </label>
-      {/* <input id="check" type="text" onChange={props.onInput} /> */}
-      <input id="check" type="text" value={userInput} onChange={onInput} />
-      <p>Checking for <b>{userInput}</b></p>
-    </div>
-  );
-}
+const Input = ({onInput, userInput}) => (
+  // All jsx must go inside a wrapping tag, usually a div. 
+  // If you do not want your jsx to go in a div, you can use a react fragment
+  // To use a react fragment, either put your jsx in <React.Fragment></React.Fragment> tags or empty tags like this <></>
+  <> 
+    <label htmlFor="Check">Check: </label>
+    {/* <input id="check" type="text" onChange={props.onInput} /> */}
+    <input id="check" type="text" value={userInput} onChange={onInput} />
+    <p>Checking for <b>{userInput}</b></p>
+  </>
+)
 
 const List = props => {
   return (
