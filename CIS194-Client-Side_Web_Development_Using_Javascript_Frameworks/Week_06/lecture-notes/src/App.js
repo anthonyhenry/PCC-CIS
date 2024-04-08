@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+
 class Sentence {
   constructor(word1, word2) {
     this.word1 = word1;
@@ -10,22 +11,24 @@ class Sentence {
     return this.word1 + ' ' + this.word2;
   }
 }
-// function declaration 
-// function name() {...}
-// arrow function: 
-// const name() => { ... } 
+
 const App = () => {
   
   // This is a synthestic event
   const handleInput = evt => {
     setCheckTerm(evt.target.value);
     console.log(evt.target.value);
+    // Set local storage input
+    localStorage.setItem('input', evt.target.value)
   };
 
   const hello_world = new Sentence('Hello', 'World!');
   const react_rocks = new Sentence('React', 'rocks!');
 
-  const [checkTerm, setCheckTerm] = React.useState("nothing");
+  const [checkTerm, setCheckTerm] = React.useState(
+    // Set term to input saved in local storage or nothing if local storage is empty 
+    localStorage.getItem('input') || "nothing"
+  );
   
   return (
     <div className="App">
@@ -42,6 +45,7 @@ const App = () => {
     </div>
   );
 };
+
 const Input = props => {  
   return (
     <div>
@@ -52,6 +56,7 @@ const Input = props => {
     </div>
   );
 }
+
 const List = props => {
   return (
     <div>
@@ -61,4 +66,5 @@ const List = props => {
     </div>
   );
 };
+
 export default App;
