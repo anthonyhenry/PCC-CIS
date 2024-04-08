@@ -1,25 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const useMyCustomHook = (key, initialState) => {
+  // State Hook
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
   );
+
+  React.useEffect(
+    ()=> {
+      localStorage.setItem(key, value);
+    },
+    [key, value]
+  );
+
+  return [value, setValue]
 }
+
+const App = () => {
+  // Your "key" is 'React'
+  // Your "initialState" is 'Redux'
+  const [checkTerm, setCheckTerm] = useMyCustomHook(
+    'React',
+    'Redux'
+  );
+};
 
 export default App;
