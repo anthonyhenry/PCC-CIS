@@ -69,7 +69,7 @@ const App = () => {
 
 const Input = ({ id, value, type = 'text', onInput, userInput, children }) => (
   <>
-    <label htmlFor={id}>{children} </label> {/* children here refers to the html in between the opening and closing tag for this componnent */}
+    <label htmlFor={id}>{children} </label> {/* children here is a prop that refers to the html in between the opening and closing tag for this componnent */}
     <input id={id} type={type} value={userInput} onChange={onInput} />
     <p>{value} <b>{userInput}</b></p>
   </>
