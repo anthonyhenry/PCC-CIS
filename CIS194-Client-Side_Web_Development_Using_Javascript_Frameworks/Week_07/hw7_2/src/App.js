@@ -24,17 +24,55 @@ const products = [
 
 // YOUR MAY ADD ANY ADDITIONAL FUNCTIONS HERE IF YOU NEED, NAMELY THE computeTotal(), etc.
 
+
 function reducer(state, action) {
   switch(action.type) {
-    // YOUR CODE HERE
+    case "add":
+      return [...state, action.product];
+    case "remove":
+      return state.splice(state.indexOf(action.product), 1)
   }
 }
+
+const computeTotal = (state) => {
+  let price = 0;
+
+  console.log(state);
+
+  for(let i = 0; i < state.length; i++)
+  {
+    console.log(state[i].price);
+    price += state[i].price;
+  }
+  return price;
+};
 
 const App = () => {
 
   const [state, dispatch] = useReducer(reducer, []);
 
   // YOUR CODE HERE
+  const add = (product) => {
+    dispatch( {type: "add", product} );
+  };
+
+  const remove = (product) => {
+    // console.log(state);
+    // console.log(state.indexOf(product));
+    // state.splice(state.indexOf(product), 1)
+    // console.log(state);
+    // console.log(product)
+    if(state.indexOf(product) > -1)
+    {
+      console.log("In state");
+      dispatch( {type: "remove", product} );
+    }
+    else
+    {
+      console.log("out of state")
+    }
+    // dispatch( {type: "remove", product} );
+  }
 
 // --------------------------------------------
 // !!! DO NOT MODIFY BELOW THIS LINE !!!
