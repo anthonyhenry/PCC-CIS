@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="tables">
-      <UserTable users={YOUR_CODE_HERE} />
+      <UserTable users={users} />
     </div>
   );
 }
@@ -53,10 +53,10 @@ function App() {
 //
 // TODO (B): Fill in the YOUR_CODE_HERE section
 // --------------------------------------------
-const UserTable = (YOUR_CODE_HERE) => [
+const UserTable = ({users}) => [
   <Table
     title="Users"
-    items={YOUR_CODE_HERE}
+    items={users}
     headerRender={Header}
   />
 ];
@@ -76,7 +76,7 @@ const Table = (props) => (
         {props.headerRender()}
       </thead>
       <tbody>
-        {YOUR_CODE_HERE.map(user => (
+        {props.items.map(user => (
           <tr key={user.id}>
             <td>
               <span>{user.id}</span>
