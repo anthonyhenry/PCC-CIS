@@ -75,6 +75,13 @@ nav.dark .toggler-slider
   border-radius: 50%;
 }
 
+nav.dark .toggler-slider-circle {
+  height: 13px;
+  width: 13px;
+  background-color: black;
+  border-radius: 50%;
+}
+
 .toggler-light {
   color:black;
 }
