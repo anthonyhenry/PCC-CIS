@@ -1,0 +1,9 @@
+div.light
+{
+  height: 200px;
+  width: 300;
+  color: black;
+  background-color: white;
+  padding: 2rem, 4rem;
+  text-align: left;
+}
