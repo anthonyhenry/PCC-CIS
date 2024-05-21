@@ -1,0 +1,117 @@
+#card
+{
+  width: 500px;
+  margin: auto;
+}
+
+nav
+{
+  height: 200px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 30px 25px;
+  height: 0px;
+}
+
+nav.dark
+{
+  background-color: black;
+}
+
+.toggler {
+  display: flex;
+  align-items: center;
+}
+
+.toggler p {
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.toggler-slider {
+  width: 25px;
+  height: 13px;
+  background-color: #2B283A;
+  border-radius: 2rem;
+  margin-inline: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid black;
+  box-sizing: content-box;
+}
+
+nav.dark .toggler-slider
+{
+  border-color: white;
+  background-color: white;
+}
+nav.dark .toggler-slider
+{
+  justify-content: flex-end;
+}
+
+.toggler-slider-circle {
+  height: 13px;
+  width: 13px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+nav.dark .toggler-slider-circle {
+  height: 13px;
+  width: 13px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.toggler-light {
+  color:black;
+}
+
+nav.dark .toggler-light
+{
+  color: #918E9B
+}
+
+.toggler-dark {
+  color: #D5D4D8;
+}
+
+nav.dark .toggler-dark
+{
+  color: white;
+}
+
+#info
+{
+  text-align: center;
+}
+.dark
+{
+  background-color: black;
+  color: white;
+}
+h3.dark
+{
+  color: yellow;
+}
+h1
+{
+  text-align: left;
+}
+p
+{
+  text-align: left;
+}
+.section
+{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+img
+{
+  width: 15%;
+}
