@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from 'react';
-import ToggleSelector from './ToggleSelector';
+import ToggleSelector from './components/ToggleSelector';
 import Info from './components/Info';
 import About from './components/About';
 import Funfacts from './components/Funfacts';
