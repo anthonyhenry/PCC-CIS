@@ -44,9 +44,16 @@ function Login( {setToken} )
                     <input 
                         type='text' 
                         onChange={evt=>setUserName(evt.target.value)}
+                        onFocus={()=>setError(true)}
+                        onBlur={()=>setError(false)}
                     />
                 </label>
-                {error && <div>You entered an invalid character: *</div>}
+                {error && 
+                    <div>
+                        <span>✅: All alphanumeric characters</span>
+                        <br/>
+                        <span>⛔: *</span>
+                    </div>}
                 <label>
                     <p>Password</p>
                     <input 
