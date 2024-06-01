@@ -13,11 +13,11 @@ function App() {
   const validatePhoneNumber = evt => {
     if(/\(?(\d{3})\)?[-\s]?(\d{3})[-\s]?(\d{4})/.test(phoneNumber))
     {
-      setError(true);
+      setError("Valid Phone Number");
     }
     else
     {
-      setError(false);
+      setError("Invalid Phone Number");
     }
   }
 
@@ -27,7 +27,7 @@ function App() {
       <p>Phone Number:</p>
       <input onChange={handleEvent}/>
       <br/>
-      { error ? "Valid" : "Invalid" }<br/>
+      {error}<br/>
       <button onClick={validatePhoneNumber}>Validate</button>
     </div>
   );
