@@ -1,3 +1,5 @@
+// json-server.cmd --watch db.json --port 8000
+
 import './App.css';
 import Header from './components/Header';
 import NotePage from './pages/NotePage';
