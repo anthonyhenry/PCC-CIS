@@ -15,6 +15,7 @@ function Login( {setToken} )
 {
     const [username, setUserName] =useState();
     const [password, setPassword] = useState();
+    const [error, setError] = useState(false);
 
     const handleSubmit = async evt => {
         evt.preventDefault();
@@ -25,20 +26,36 @@ function Login( {setToken} )
         setToken(token);
     }
 
+    const validateChar = evt => {
+        if(/\*/.test(username))
+        {
+            setError(true);
+            return;
+        }
+        setError(false);
+    }
+
     return(
         <div className='login-wrapper'>
             <h1>Please login</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
-                    <input type='text' onChange={evt=>setUserName(evt.target.value)}/>
+                    <input 
+                        type='text' 
+                        onChange={evt=>setUserName(evt.target.value)}
+                    />
                 </label>
+                {error && <div>You entered an invalid character: *</div>}
                 <label>
                     <p>Password</p>
-                    <input type='password'onChange={evt=>setPassword(evt.target.value)}/>
+                    <input 
+                        type='password'
+                        onChange={evt=>setPassword(evt.target.value)}
+                    />
                 </label>
                 <div>
-                    <button type='submit'>Submit</button>
+                    <button type='submit' onClick={validateChar}>Submit</button>
                 </div>
             </form>
         </div>
