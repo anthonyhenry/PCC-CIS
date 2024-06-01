@@ -4,10 +4,11 @@ import LandingPage from '../Landing'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Navigation from '../Navigation';
 import * as ROUTES from "../constants/paths"
+import useToken from '../Hooks/useToken';
 
 function App()
 {
-    const [token, setToken] = useState();
+    const {token, setToken} = useToken();
 
     if(!token)
     {
