@@ -1,7 +1,24 @@
+// https://react.dev/learn/tutorial-tic-tac-toe#stylescss
+import { useState } from "react";
+
 // Components must start with a capital letter
-function Square( {value} )
+function Square()
 {
-  return <button className="square">{value}</button>; 
+  const [value, setValue] = useState(null);
+
+  function handleClick()
+  {
+    setValue('X');
+  }
+
+  return (
+    <button 
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  )
 }
 
 // The export JavaScript keyword makes this function accessible outside of this file
@@ -10,19 +27,19 @@ export default function Board() {
   return (
     <>
       <div className="board-row">
-        <Square value="X"/>
-        <Square value="X"/>
-        <Square value="X"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="X"/>
-        <Square value="X"/>
-        <Square value="X"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square value="X"/>
-        <Square value="X"/>
-        <Square value="X"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
     </>
   )
