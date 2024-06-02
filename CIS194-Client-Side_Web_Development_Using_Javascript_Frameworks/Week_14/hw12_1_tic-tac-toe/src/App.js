@@ -98,6 +98,31 @@ function Board( {xIsNext, squares, onPlay} ) {
   )
 }
 
+function ToggleButton( {historyArray} )
+{
+  const [isToggled, setToggle] = useState(true);
+
+  const handleToggle = () => {
+    setToggle(!isToggled);
+    console.log(historyArray);
+    let newHistoryArray = [];
+
+    for(let i = historyArray.length - 1; i >= 0; i--)
+    {
+      // console.log(historyArray[i]);
+      newHistoryArray.push(historyArray[i]);
+    }
+    console.log(newHistoryArray);
+    // setHistory(newHistoryArray);
+  }
+
+  return (
+    <button onClick={handleToggle}>
+      {isToggled ? 'Descending Order' : 'Ascending Order'}
+    </button>
+  )
+}
+
 // The export JavaScript keyword makes this function accessible outside of this file
 // The default keyword tells other files using your code that it’s the main function in your file
 export default function Game()
@@ -151,6 +176,7 @@ export default function Game()
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
+        <ToggleButton historyArray={history}/>
         <ol>{moves}</ol>
       </div>
     </div>
