@@ -126,27 +126,35 @@ export default function Game()
     setCurrentMove(nextMove);
   }
 
+  // State for toggle button
   const [isToggled, setToggle] = useState(true);
 
+  // Function for when the toggle is pressed
   function handleToggle()
   {
-    console.log(isToggled);
+    // Switch toggle
     setToggle(!isToggled);
-    console.log(history);
-    let newHistoryArray = [];
 
+    // Create an empty array for reversing the history
+    let reverseHistoryArray = [];
+
+    // Create reverse history array
     for(let i = history.length - 1; i>= 0; i--)
     {
-      newHistoryArray.push(history[i]);
+      reverseHistoryArray.push(history[i]);
     }
-    console.log(newHistoryArray);
-    setHistory(newHistoryArray);
 
+    // Set history to the reversed history array
+    setHistory(reverseHistoryArray);
+
+    // Set the current move to the correct move in the new array
+    setCurrentMove((history.length - 1) - currentMove);
   }
 
   const moves = history.map( (squares, move) => {
     let description;
     
+    // Display moves in ascending order
     if(isToggled)
     {
       if(move > 0)
@@ -158,6 +166,7 @@ export default function Game()
         description = "Go to game start";
       }
     }
+    // Display moves in descending order
     else
     {
       if(move == history.length - 1)
@@ -184,7 +193,7 @@ export default function Game()
       </div>
       <div className="game-info">
         <button onClick={handleToggle}>
-          {isToggled ? 'Descending Order' : 'Ascending Order'}
+          {isToggled ? 'Ascending Order: On' : 'Ascending Order: Off'}
         </button>
         <ol>{moves}</ol>
       </div>
