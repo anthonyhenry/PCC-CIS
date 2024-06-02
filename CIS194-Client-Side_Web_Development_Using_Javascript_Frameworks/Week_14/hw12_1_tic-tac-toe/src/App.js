@@ -98,31 +98,6 @@ function Board( {xIsNext, squares, onPlay} ) {
   )
 }
 
-function ToggleButton( {historyArray} )
-{
-  const [isToggled, setToggle] = useState(true);
-
-  const handleToggle = () => {
-    setToggle(!isToggled);
-    console.log(historyArray);
-    let newHistoryArray = [];
-
-    for(let i = historyArray.length - 1; i >= 0; i--)
-    {
-      // console.log(historyArray[i]);
-      newHistoryArray.push(historyArray[i]);
-    }
-    console.log(newHistoryArray);
-    // setHistory(newHistoryArray);
-  }
-
-  return (
-    <button onClick={handleToggle}>
-      {isToggled ? 'Descending Order' : 'Ascending Order'}
-    </button>
-  )
-}
-
 // The export JavaScript keyword makes this function accessible outside of this file
 // The default keyword tells other files using your code that it’s the main function in your file
 export default function Game()
@@ -151,16 +126,48 @@ export default function Game()
     setCurrentMove(nextMove);
   }
 
+  const [isToggled, setToggle] = useState(true);
+
+  function handleToggle()
+  {
+    console.log(isToggled);
+    setToggle(!isToggled);
+    console.log(history);
+    let newHistoryArray = [];
+
+    for(let i = history.length - 1; i>= 0; i--)
+    {
+      newHistoryArray.push(history[i]);
+    }
+    console.log(newHistoryArray);
+    setHistory(newHistoryArray);
+
+  }
+
   const moves = history.map( (squares, move) => {
     let description;
     
-    if(move > 0)
+    if(isToggled)
     {
-      description = "Go to move #" + move;
+      if(move > 0)
+      {
+        description = "Go to move #" + move;
+      }
+      else
+      {
+        description = "Go to game start";
+      }
     }
     else
     {
-      description = "Go to game start";
+      if(move == history.length - 1)
+      {
+        description = "Go to game start";
+      }
+      else
+      {
+        description = "Go to move #" + ((history.length - 1) - move);
+      }
     }
 
     return(
@@ -176,7 +183,9 @@ export default function Game()
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
-        <ToggleButton historyArray={history}/>
+        <button onClick={handleToggle}>
+          {isToggled ? 'Descending Order' : 'Ascending Order'}
+        </button>
         <ol>{moves}</ol>
       </div>
     </div>
